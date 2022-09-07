@@ -21,8 +21,8 @@ class People extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function sub_category(): BelongsTo
+    public function sub()
     {
-        return $this->belongsTo(Subcategory::class);
+        return $this->belongsTo(Subcategory::class, 'subcategory_id');
     }
 }

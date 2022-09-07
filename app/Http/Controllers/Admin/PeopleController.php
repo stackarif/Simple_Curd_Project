@@ -22,8 +22,7 @@ class PeopleController extends Controller
 
     public function index()
     {
-        // return "People controller";
-        $peoples = People::with('category','sub_category')->latest()->get();
+        $peoples = People::with('category','sub')->latest()->get();
         // return $peoples;
         return view('backend.people.index', compact('peoples'));
     }
@@ -56,25 +55,21 @@ class PeopleController extends Controller
     public function view(People $slug)
     {
         //return $slug;
-        $product = $slug->load('category','sub_category');
+        $product = $slug->load('category','sub');
         return view('backend.people.view', compact('product'));
     }
     public function delete(People $slug)
     {
-        $image = $slug->image;
         $sliders = $slug->sliders;
         $slug->delete();
-        File::deleteFile($image);
-        foreach ($sliders as $slider) {
-            File::deleteFile($slider->image);
-        }
+     
         session()->flash('success', ' Deleted Successfully!');
         return redirect()->route('admin.people.index');
     }
     public function edit(People $product)
     {
 
-        $product = $product->load('category','sub_category');
+        $product = $product->load('category','sub');
         $categories = Category::latest()->get();
         return view('backend.people.edit', compact('product', 'categories'));
     }

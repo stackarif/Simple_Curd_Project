@@ -31,7 +31,7 @@
                             <td>{{ $people->phone }}</td>
                             <td>{{ $people->designation }}</td>
                             <td>{{ $people->category->name ?? "NULL"}} </td>
-                            <td>{{ $people->sub_categories->name ?? "NULL" }}</td>
+                            <td>{{ $people->sub->name ?? "NULL" }}</td>
                            
                             <td class="text-center">
                                 <a href="{{ route('admin.people.view', $people->slug) }}"
