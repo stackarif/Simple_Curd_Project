@@ -16,34 +16,40 @@
             <table class="table table-bordered">
                 <tr>
                     <th>Name</th>
-                    <td>{{ $product->name }}</td>
+                    <td>{{ $people->name }}</td>
                 </tr>
                 <tr>
                     <th>Section</th>
-                    <td>{{ $product->category->name }}</td>
+                    <td>{{ $people->category->name }}</td>
                 </tr>
                 <tr>
                     <th>Seb-section</th>
 
-                    <td>{{ $product->sub_categories->name ?? "NULL" }}</td>
+                    <td>{{ $people->sub->name ?? "NULL" }}</td>
+
+                </tr>
+                <tr>
+                    <th>Level Three:</th>
+
+                    <td>{{ $people->level_three->name ?? "NULL" }}</td>
 
                 </tr>
                 
                 <tr>
                     <th>Email</th>
 
-                    <td>{{ $product->email }}</td>
+                    <td>{{ $people->email }}</td>
 
                 </tr>
                 <th>Phone</th>
 
-                  <td>{{ $product->phone }}</td>
+                  <td>{{ $people->phone }}</td>
 
                 <tr>
                 <tr>
                     <th>Designation</th>
 
-                    <td>{{ $product->designation }}</td>
+                    <td>{{ $people->designation }}</td>
         
                 <tr>
                     

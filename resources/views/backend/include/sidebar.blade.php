@@ -50,7 +50,7 @@
             <a href="{{route('admin.category.index')}}" class="nav-link {{ (request()->is('admin/category')) ? 'active': '' }}">
               <i class="nav-icon fas fa-tags"></i>
               <p>
-                Category
+                Main Section
               </p>
             </a>
            </li>
@@ -58,7 +58,15 @@
             <a href="{{route('admin.sub-cat.index')}}" class="nav-link {{ (request()->is('admin/sub-cat')) ? 'active': '' }}">
               <i class="nav-icon fas fa-tags"></i>
               <p>
-               Sub Category
+               Section
+              </p>
+            </a>
+           </li>
+           <li class="nav-item mt-2">
+            <a href="{{route('admin.level-three.index')}}" class="nav-link {{ (request()->is('admin/level-three')) ? 'active': '' }}">
+              <i class="nav-icon fas fa-tags"></i>
+              <p>
+               Sub Section
               </p>
             </a>
            </li>

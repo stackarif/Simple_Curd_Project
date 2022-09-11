@@ -13,7 +13,7 @@
                     <table class="table table-bordered">
                         <tr>
                             <th>SL</th>
-                            <th>Name</th>
+                            <th>Main section</th>
                             <th class="text-center">Actions</th>
                         </tr>
                         <tbody id="catTbody">

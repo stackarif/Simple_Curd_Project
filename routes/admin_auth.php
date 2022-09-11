@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\Auth\{
     AuthenticatedSessionController,
     RegisteredUserController,
 };
-
+use App\Http\Controllers\IsAdminController;
 
 Route::prefix('admin')->name('admin.')->group(function () {
  
@@ -16,6 +16,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
     ->name('login');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+    ->middleware('guest:admin');
+
+    Route::get('/isadmin',[IsAdminController::class, 'index'])
+    ->middleware('guest:admin')
+    ->name('isadmin');
+
+    Route::post('/isadmin',[IsAdminController::class, 'store'])
     ->middleware('guest:admin');
 
 

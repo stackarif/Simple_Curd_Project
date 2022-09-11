@@ -27,8 +27,10 @@ class UpdatePeopleRequest extends FormRequest
             'name' => ['required'],
             'email' => ['required'],
             'phone' => ['required'],
+            'tel_phone' => ['required'],
             'category_id' => ['required'],
             'subcategory_id' => ['required'],
+            'level_three_id' => ['required'],
             'designation' => ['required'],
         ];
     }

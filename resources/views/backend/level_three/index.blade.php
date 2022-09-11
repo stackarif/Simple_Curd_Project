@@ -7,14 +7,14 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="text-info">
-                        Manage Sub Category
+                        Manage Level Three 
                     </h3>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <tr>
                                 <th>SL</th>
+                                <th>Sub section</th>
                                 <th>Section</th>
-                                <th>Main section</th>
                                 <th class="text-center">Actions</th>
                             </tr>
                             <tbody id="subTbody"></tbody>
@@ -28,7 +28,7 @@
         <div class="col-md-4 mt-3">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="text-info">Add Sub Category</h3>
+                    <h3 class="text-info">Add Level Three</h3>
                 </div>
                 <div class="card-body">
                     <form action="" id="addSubCategoryForm">
@@ -37,17 +37,17 @@
                             <span class="text-danger" id="catNameError"></span>
                         </div>
                         <div class="form-group">
-                            <select name="" id="category_id" class="form-control">
+                            <select name="" id="subcategory_id" class="form-control">
                                 <option value="">Select Parent Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
 
                             </select>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-sm btn-success btn-block"><i class="fa fa-plus"></i> Add New
-                                Sub Category</button>
+                                Level Three</button>
                         </div>
                     </form>
                 </div>
@@ -101,10 +101,10 @@
                             <span class="text-danger" id="catNameError"></span>
                         </div>
                         <div class="form-group">
-                            <select name="" id="edit_category_id" class="form-control">
+                            <select name="" id="edit_subcategory_id" class="form-control">
                                 <option value="">Select Parent Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @foreach ($subcategories as $subcategory)
+                                    <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                 @endforeach
                                 <span class="text-danger" id="catImageError"></span>
                             </select>
@@ -127,7 +127,7 @@
 @push('js')
     <script>
         const getAllSubCategory = async () => {
-            let url = `${admin_base_url}/sub-cat/all`
+            let url = `${admin_base_url}/level-three/all`
             const {
                 data
             } = await axios.get(url)
@@ -144,13 +144,13 @@
                 <tr>
                         <td>${item.id}</td>
                         <td>${item.name}</td>
-                        <td>${item.category.name}</td>
+                        <td>${item.sub.name}</td>
                         <td class="text-center">
                         <a href="" class="btn btn-sm btn-success" data-id="${item.id}" data-toggle="modal" data-target="#viewModal" id="viewRow"><i class="fa fa-eye"></i></a>
                         <a href="" class="btn btn-sm btn-info" data-id="${item.id}" data-toggle="modal" data-target="#editModal" id="editRow"><i class="fa fa-edit"></i></a>
                         <a href="" id="deleteRow" class="btn btn-sm btn-danger" data-id="${item.id}"><i class="fa fa-trash-alt"></i></a>
                         </td>
-                        </tr>
+                </tr>
                 `
             });
             loop = loop.join("")
@@ -163,7 +163,7 @@
         $('#addSubCategoryForm').on('submit', function(e) {
             e.preventDefault();
             let name = $('#name')
-            let category_id = $('#category_id')
+            let subcategory_id = $('#subcategory_id')
             let catNameError = $('#catNameError')
             catNameError.text("")
 
@@ -173,13 +173,13 @@
             }
             let data = {
                 name: name.val(),
-                category_id: category_id.val()
+                subcategory_id: subcategory_id.val()
             }
-            axios.post("{{ route('admin.sub-cat.store') }}", data)
+            axios.post("{{ route('admin.level-three.store') }}", data)
                 .then(res => {
                     getAllSubCategory();
                     name.val('');
-                    category_id.val('');
+                    subcategory_id.val('');
                     setSuccessAlert(res.data.mgs)
                 }).catch(err => {
                     if (err.response.data.errors.name) {
@@ -187,7 +187,7 @@
 
                     }
 
-                })
+                }) 
         });
 
        // view
@@ -195,7 +195,7 @@
        $('body').on('click', '#viewRow', function() {
             let slug = $(this).data('id');
 
-            let url = `${admin_base_url}/sub-cat/${slug}`
+            let url = `${admin_base_url}/level-three/${slug}`
 
             axios.get(url).then(res => {
                 let response = ` <tr>
@@ -204,7 +204,7 @@
                   </tr>
                   <tr>
                       <th>Parent</th>
-                      <th>${res.data.category.name}</th>
+                      <th>${res.data.sub.name}</th>
                   </tr>`
 
                 let tby = $('#viewCatTbody')
@@ -237,7 +237,7 @@
                     let id = $(this).attr('data-id');
                     // console.log(id);
                     // return
-                    const url = `${admin_base_url}/sub-cat/${id}`;
+                    const url = `${admin_base_url}/level-three/${id}`;
                     axios.delete(url)
                         .then(res => {
                             getAllSubCategory();
@@ -261,13 +261,13 @@
 
         })
 
-        // // edit
+        // edit
         $('body').on('click', '#editRow', function(e) {
             e.preventDefault()
             let id = $(this).attr('data-id');
             // console.log(id)
             // return
-            const url = `${admin_base_url}/sub-cat/${id}`;
+            const url = `${admin_base_url}/level-three/${id}`;
             axios.get(url)
                 .then(res => {
                     let {
@@ -275,7 +275,7 @@
                     } = res
                     $('#edit_name').val(data.name)
                     $('#edit_id').val(data.id)
-                    $('#edit_category_id').val(data.category_id)
+                    $('#edit_subcategory_id').val(data.subcategory_id)
                     // console.log(data);
                 });
         });
@@ -287,12 +287,12 @@
             let name = $('#edit_name').val()
             let slug = $('#edit_name').val()
             let id = $('#edit_id').val()
-            let category_id = $('#edit_category_id').val()
-            let url = `${admin_base_url}/sub-cat/update/${id}`
+            let subcategory_id = $('#edit_subcategory_id').val()
+            let url = `${admin_base_url}/level-three/update/${id}`
 
             axios.post(url, {
                 name,
-                category_id,
+                subcategory_id,
                 slug
             }).then(res => {
                 getAllSubCategory();

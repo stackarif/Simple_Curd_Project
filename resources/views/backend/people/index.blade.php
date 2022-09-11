@@ -18,6 +18,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Designation</th>
+                    <th>Main section</th>
                     <th>Section</th>
                     <th>Sub-section</th>
                     <th class="text-center">Actions</th>
@@ -32,6 +33,7 @@
                             <td>{{ $people->designation }}</td>
                             <td>{{ $people->category->name ?? "NULL"}} </td>
                             <td>{{ $people->sub->name ?? "NULL" }}</td>
+                            <td>{{ $people->level_three->name ?? "NULL" }}</td>
                            
                             <td class="text-center">
                                 <a href="{{ route('admin.people.view', $people->slug) }}"

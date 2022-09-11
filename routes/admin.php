@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\LevelThreeController;
 use App\Http\Controllers\Admin\PeopleController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\SubCategoryController;
@@ -35,15 +36,30 @@ Route::prefix('admin')->name('admin.')->middleware(['auth:admin'])->group(functi
 
     });
 
+     # Level Three
+
+     Route::prefix('level-three')->name('level-three.')->group(function () {
+        Route::get('/',[LevelThreeController::class,'index'])->name('index');
+        Route::post('/store',[LevelThreeController::class,'store'])->name('store'); //API
+        Route::get('/all',[LevelThreeController::class,'getAllLevelThree'])->name('all');
+        Route::get('/{id}',[LevelThreeController::class,'view'])->name('view');
+        Route::delete('/{category}', [LevelThreeController::class, 'destroy'])->name('destroy');
+        Route::post('/update/{id}', [LevelThreeController::class, 'update'])->name('update');
+
+
+
+   });
+
     Route::prefix('people')->name('people.')->group(function () {
         Route::get('/',[PeopleController::class,'index'])->name('index');
         Route::post('/store',[PeopleController::class, 'store'])->name('store');
         Route::get('/create',[PeopleController::class, 'create'])->name('create');
         Route::get('/view/{slug}', [PeopleController::class, 'view'])->name('view');
         Route::get('/delete/{slug}', [PeopleController::class, 'delete'])->name('delete');
-        Route::get('/edit/{product}', [PeopleController::class, 'edit'])->name('edit');
+        Route::get('/edit/{people}', [PeopleController::class, 'edit'])->name('edit');
         Route::get('/categories/{id}', [PeopleController::class, 'categories'])->name('categories');
-        Route::post('update/{product}', [PeopleController::class, 'update'])->name('update');
+        Route::get('/subcategories/{id}', [PeopleController::class, 'subcategories'])->name('subcategories');
+        Route::post('update/{people}', [PeopleController::class, 'update'])->name('update');
 
     });
 

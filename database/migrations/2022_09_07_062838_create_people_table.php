@@ -17,12 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('subcategory_id')->constrained('subcategories')->onDelete('cascade');
+            $table->foreignId('level_three_id')->constrained('level_threes')->onDelete('cascade');
             $table->string('name')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('tel_phone')->nullable();
             $table->string('designation')->nullable();
             $table->string('slug')->nullable();
-            $table->text('description')->nullable();
+            $table->string('url')->nullable();
             $table->timestamps();
         });
     }

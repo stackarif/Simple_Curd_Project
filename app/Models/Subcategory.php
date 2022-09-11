@@ -21,9 +21,15 @@ class Subcategory extends Model
             set: fn ($value) => Str::slug($value),
         );
     }
+
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+    public function level_three(): HasMany
+    {
+        return $this->hasMany(Level_three::class, 'subcategory_id', 'id');
     }
 
     public function peoples()

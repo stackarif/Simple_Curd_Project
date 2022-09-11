@@ -22,8 +22,8 @@ class PeopleController extends Controller
 
     public function index()
     {
-        $peoples = People::with('category','sub')->latest()->get();
-        // return $peoples;
+        $peoples = People::with('category','sub','level_three')->latest()->get();
+        //return $peoples;
         return view('backend.people.index', compact('peoples'));
     }
     public function create()
@@ -36,15 +36,17 @@ class PeopleController extends Controller
     public function store(PeopleRequest $request)
     {
         //return $request;
-        //return Product::find(1)->sliders;
         $product = People::create([
             'name' => $request->name,
             'slug' => $request->name,
             'category_id' => $request->category_id,
             'subcategory_id' => $request->subcategory_id,
+            'level_three_id' => $request->level_three_id,
             'email' => $request->email,
             'phone' => $request->phone,
+            'tel_phone' => $request->tel_phone,
             'designation' => $request->designation,
+            'url' => $request->url,
         ]);
         
     
@@ -55,8 +57,8 @@ class PeopleController extends Controller
     public function view(People $slug)
     {
         //return $slug;
-        $product = $slug->load('category','sub');
-        return view('backend.people.view', compact('product'));
+        $people = $slug->load('category','sub','level_three');
+        return view('backend.people.view', compact('people'));
     }
     public function delete(People $slug)
     {
@@ -66,35 +68,49 @@ class PeopleController extends Controller
         session()->flash('success', ' Deleted Successfully!');
         return redirect()->route('admin.people.index');
     }
-    public function edit(People $product)
-    {
 
-        $product = $product->load('category','sub');
-        $categories = Category::latest()->get();
-        return view('backend.people.edit', compact('product', 'categories'));
-    }
    
     public function categories($id)
     {
         $data = Category::find($id)->sub_categories;
+        //return $data;
         return response()->json([
             'data' => $data
         ]);
     }
 
-   
+    public function subcategories($id)
+    {
+        $data = Subcategory::find($id)->level_three;
+       // return $data;
+        return response()->json([
+            'data' => $data
+        ]);
+    }
 
-    public function update(UpdatePeopleRequest $request, People $product)
+    public function edit(People $people)
+    {
+
+        $people = $people->load('category','sub','level_three');
+        $categories = Category::latest()->get();
+        return view('backend.people.edit', compact('people', 'categories'));
+    }
+
+    public function update(UpdatePeopleRequest $request, People $people)
     {
             //return $request;
-            $product->update([
+            $people->update([
                 'name' => $request->name,
                 'slug' => $request->name,
                 'category_id' => $request->category_id,
                 'subcategory_id' => $request->subcategory_id,
+                'level_three_id' => $request->level_three_id,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'tel_phone' => $request->tel_phone,
                 'designation' => $request->designation,
+                'url' => $request->url,
+
             ]);
 
         session()->flash('success', 'Updated Successfully!');
