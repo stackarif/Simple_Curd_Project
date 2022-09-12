@@ -69,6 +69,13 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
+                            <div>
+                                <label for=""><b>Telephone : </b></label>
+                                <input type="tel" class="form-control" id="tel_phone" name="tel_phone" value="{{$people->tel_phone}}" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" placeholder="123-45-678">
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
            
                             <div>
                                 <label for=""><b>Designation: </b></label>

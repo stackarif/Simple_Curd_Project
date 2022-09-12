@@ -198,14 +198,22 @@
             let url = `${admin_base_url}/sub-cat/${slug}`
 
             axios.get(url).then(res => {
-                let response = ` <tr>
-                      <th>Name</th>
+                let response = ` 
+                    <tr>
+                      <th>Section</th>
                       <td>${res.data.name}</td>
-                  </tr>
-                  <tr>
-                      <th>Parent</th>
+                    </tr>
+                    
+                    <tr>
+                      <th>Slug</th>
+                      <td>${res.data.slug}</td>
+                    </tr> 
+
+                    <tr> 
+                      <th>Main section</th>
                       <th>${res.data.category.name}</th>
-                  </tr>`
+                    </tr>
+                    `
 
                 let tby = $('#viewCatTbody')
                 tby.html(response)
@@ -300,7 +308,7 @@
                 $('#editModal').modal('toggle')
             }).catch(err => {
 
-            })
-        })
+            });
+        });
     </script>
 @endpush

@@ -198,14 +198,21 @@
             let url = `${admin_base_url}/level-three/${slug}`
 
             axios.get(url).then(res => {
-                let response = ` <tr>
-                      <th>Name</th>
+                let response = ` 
+                    <tr>
+                      <th>Sub section</th>
                       <td>${res.data.name}</td>
-                  </tr>
-                  <tr>
-                      <th>Parent</th>
+                    </tr>
+                    <tr>
+                      <th>Slug</th>
+                      <td>${res.data.slug}</td>
+                    </tr> 
+
+                    <tr>
+                      <th>Section</th>
                       <th>${res.data.sub.name}</th>
-                  </tr>`
+                    </tr>
+                  `
 
                 let tby = $('#viewCatTbody')
                 tby.html(response)

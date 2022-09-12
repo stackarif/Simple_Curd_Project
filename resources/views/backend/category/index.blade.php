@@ -141,8 +141,12 @@
                 console.log(res)
                 let response = `
                   <tr>
-                      <th>Name</th>
+                      <th>Main section</th>
                       <td>${res.data.name}</td>
+                  </tr>
+                  <tr>
+                      <th>Slug</th>
+                      <td>${res.data.slug}</td>
                   </tr>
                 
                   `
@@ -180,50 +184,50 @@
 
         // delete
 
-$('body').on('click','#deleteRow',function(e){
-e.preventDefault()
-const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
+    $('body').on('click','#deleteRow',function(e){
+    e.preventDefault()
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+      },
+      buttonsStyling: false
+    })
 
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    let slug = $(this).attr('data-id');
-    const url = `${admin_base_url}/category/${slug}`;
-    axios.delete(url)
-    .then(res => {
-        getAllCategoty();
-        })
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
+    swalWithBootstrapButtons.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        let slug = $(this).attr('data-id');
+        const url = `${admin_base_url}/category/${slug}`;
+        axios.delete(url)
+        .then(res => {
+            getAllCategoty();
+            })
+        swalWithBootstrapButtons.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
 
-})
+    })
 
 
 // edit
