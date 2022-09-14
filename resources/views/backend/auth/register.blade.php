@@ -1,19 +1,16 @@
-@extends('layouts.backend_app')
+{{-- @extends('layouts.backend_app')
 
 @section('title' ,'Admin Register')
 
 @section('app_content')
 <div class="login-page">
     <div class="login-box">
-        <!-- /.login-logo -->
         <div class="card">
           <div class="card-body login-card-body">
             <h3 class="login-box-msg">Admin Register</h3>
 
             <form action="{{ route('admin.register') }}" method="POST">
-                {{-- @if(session('status'))
-                <span class="text-success">{{ session('status') }}</span>
-                @endisset --}}
+             
                 @csrf
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Enter Your Name" name="name">
@@ -34,15 +31,7 @@
               @error('email')
               <span class="text-danger">{{ $message }}</span>
               @enderror
-              {{-- <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="01...." name="phone">
-                <div class="input-group-append">
-                  
-                </div>
-                @error('phone')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-              </div> --}}
+        
 
               <div class="input-group mb-3">
                 <input type="password" class="form-control" placeholder=" Enter Your Password" name="password">
@@ -76,11 +65,9 @@
                     </label>
                   </div>
                 </div>
-                <!-- /.col -->
                 <div class="col-4">
                   <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                 </div>
-                <!-- /.col -->
               </div>
             </form>
 
@@ -88,9 +75,8 @@
               <a href="{{ route('admin.login') }}" class="text-center">Login</a>
             </p>
           </div>
-          <!-- /.login-card-body -->
         </div>
       </div>
 </div>
 
-@stop
+@stop --}}

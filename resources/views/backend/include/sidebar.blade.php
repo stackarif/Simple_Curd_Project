@@ -1,4 +1,11 @@
-<aside class="main-sidebar h-auto sidebar-dark-primary elevation-4">
+<style>
+  .main-sidebar{
+    margin-bottom: 421px;
+    width: 100px;
+  }
+
+</style>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <!-- Brand Logo -->
     {{-- <a href="index3.html" class="brand-link">

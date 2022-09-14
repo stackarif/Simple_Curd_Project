@@ -30,10 +30,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     ->middleware('auth:admin')
     ->name('logout'); 
     
-    Route::get('/register', [RegisteredUserController::class, 'create'])
-    ->middleware('guest:admin')
-    ->name('register');
+    // Route::get('/register', [RegisteredUserController::class, 'create'])
+    // ->middleware('guest:admin')
+    // ->name('register');
 
-    Route::post('/register', [RegisteredUserController::class, 'store'])
-    ->middleware('guest:admin');
+    // Route::post('/register', [RegisteredUserController::class, 'store'])
+    // ->middleware('guest:admin');
 });
