@@ -24,7 +24,7 @@
                             @enderror
                         </div>
                         <div >
-                            <label for=""><b>Category : </b></label>
+                            <label for=""><b>Main section : </b></label>
                             <select name="category_id" id="category_id" class="form-control">
                                 <option value="">Select main section</option>
                                 @foreach ($categories as $category)
@@ -36,7 +36,7 @@
                             @enderror
                         </div>
                         <div>
-                            <label for=""><b>Sub Category : </b></label>
+                            <label for=""><b>Section : </b></label>
                             <select name="subcategory_id" id="subcategory_id" class="form-control">
                                 <option value="">Select section</option>
                             </select>
@@ -45,7 +45,7 @@
                             @enderror
                         </div>
                         <div>
-                            <label for=""><b>Level Three : </b></label>
+                            <label for=""><b>Sub section : </b></label>
                             <select name="level_three_id" id="level_three_id" class="form-control">
                                 <option value="">Select second section</option>
                             </select>
